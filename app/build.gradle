@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 34
+
+    defaultConfig {
+        namespace "com.example.airlocunlockapp"
+        minSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Exclure les dépendances conflictuelles
+    implementation(libs.kotlin.stdlib) {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+    }
+
+    // Autres dépendances
+    implementation libs.appcompat
+    implementation libs.material.v1120
+    implementation libs.activity.ktx.v131
+    implementation libs.constraintlayout
+    implementation libs.okhttp.v493
+    implementation libs.retrofit
+    implementation libs.converter.gson
+    implementation libs.picasso
+    implementation libs.activity
+
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
